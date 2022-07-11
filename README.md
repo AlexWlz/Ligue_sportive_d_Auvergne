@@ -1,5 +1,6 @@
 # DB
 Importer le fichier "tutorialdb.sql" dans votre base de données
+
 Lancer votre servcie web (apache)
 
 # Config
