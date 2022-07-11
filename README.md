@@ -1,8 +1,8 @@
-# Ligue_sportive_d_Auvergne
-
+# DB
 Importer le fichier "tutorialdb.sql" dans votre base de données
 Lancer votre servcie web (apache)
 
+# Config
 Modifier le fichier "server/config/config.json" avec vos information de connexion à votre base de données
 
 # Server
