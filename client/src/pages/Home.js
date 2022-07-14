@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -6,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const navigate = useNavigate();
-  let list = JSON.parse(localStorage.getItem("cart"));
 
   const [authState, setAuthState] = useState({
     email: "",
@@ -83,6 +83,7 @@ function Home() {
             });
         }
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function saveBasket(basket) {
@@ -98,11 +99,13 @@ function Home() {
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   let quantity = 0;
 
   return (
     <div className="containerPost">
       {listOfPosts.map((value, key) => {
+        const url = `http://localhost:3001/${value.url}`
         const addToCart = () => {
           window.location.reload();
           let basket = getBasket();
@@ -126,15 +129,22 @@ function Home() {
           return (
             <div key={key} className="post">
               <div className="title">
-                <p>
-                  {value.produce} / Stock: {value.stock}
-                </p>
+                <div className="text">
+                  <p>{value.produce}</p>
+                </div>
+                <div className="text">
+                  <p>Stock: {value.stock}</p>
+                </div>
               </div>
               <div className="body">
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                {value.url && <img src={url} />}
                 <p>{value.description}</p>
               </div>
               <div className="footer">
-                <p>{value.price} €</p>
+                <div className="text">
+                  <p>{value.price} €</p>
+                </div>
                 {user.admin && (
                   <div>
                     <button
@@ -152,7 +162,7 @@ function Home() {
                   </div>
                 )}
                 {authState.status && (
-                  <div>
+                  <div className="text">
                     <p onChange={addToCart}>
                       {JSON.parse(localStorage.getItem(value.id))}
                     </p>
@@ -162,15 +172,20 @@ function Home() {
             </div>
           );
         } else {
-          if (value.stock != 0) {
+          if (value.stock !== "0") {
             return (
               <div key={key} className="post">
                 <div className="title">
-                  <p>
-                    {value.produce} / Stock: {value.stock}
-                  </p>
+                  <div className="text">
+                    <p>{value.produce}</p>
+                  </div>
+                  <div className="text">
+                    <p>Stock: {value.stock}</p>
+                  </div>
                 </div>
                 <div className="body">
+                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                  {value.url && <img src={url} />}
                   <p>{value.description}</p>
                 </div>
                 <div className="footer">

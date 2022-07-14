@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 11 juil. 2022 à 09:43
+-- Généré le : jeu. 14 juil. 2022 à 18:02
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -36,19 +36,21 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `description` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `stock` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `posts`
 --
 
-INSERT INTO `posts` (`id`, `produce`, `description`, `price`, `stock`, `createdAt`, `updatedAt`) VALUES
-(1, 'Ballon', 'ballon blanc, france', '14', '3', '2022-06-15 10:20:12', '2022-07-11 09:38:59'),
-(2, 'Crampon', 'crampon noir, nike', '50', '2', '2022-06-15 10:23:08', '2022-06-16 14:12:47'),
-(3, 'T-shirt', 'T-shirt noir, sport', '15', '0', '2022-06-16 12:20:19', '2022-06-16 12:20:19');
+INSERT INTO `posts` (`id`, `produce`, `description`, `price`, `stock`, `url`, `createdAt`, `updatedAt`) VALUES
+(9, 'Ballon Gilbert', 'Ballon de rugby taille 5.', '15', '10', 'rugby-2522306_1920.jpg', '2022-07-14 16:30:48', '2022-07-14 17:55:06'),
+(10, 'Crampon Adidas', 'Crampon visée Adidas.', '70', '5', 'categorie-adidas-rugby-hp.jpg', '2022-07-14 17:46:30', '2022-07-14 17:49:45'),
+(11, 'Tee', 'Support de ballon Forza noir. ', '10', '20', 'forza_moulded_rubber_kicking_tee.jpg', '2022-07-14 17:53:00', '2022-07-14 17:54:37'),
+(12, 'Maillot All Black', 'Maillot Adidas All Black 2021-2022.', '90', '0', 'maillot-rugby-all-blacks-adidas-4.jpg', '2022-07-14 17:59:19', '2022-07-14 18:00:49');
 
 -- --------------------------------------------------------
 
@@ -75,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `phone`, `admin`, `createdAt`, `updatedAt`) VALUES
-(6, 'admin@admin.fr', '$2b$10$VizyEWORCXxzQHJVpv6Qoe3ZNwSyuFr3TlR20tZrBv6TY33jWTqUS', 'admin', 'admin', 'admin', 1, '2022-06-02 14:35:01', '2022-07-11 09:15:45'),
-(11, 'test@test.fr', '$2b$10$iOJGPiD6Q5.Bu1tgqoL3SuVvgIwH6gllZ8AbNzeyvYHdNFHQggu.u', 'test', 'test', '01 02 03 04 05', 0, '2022-06-13 21:12:34', '2022-07-11 09:16:06');
+(6, 'admin@admin.fr', '$2b$10$VizyEWORCXxzQHJVpv6Qoe3ZNwSyuFr3TlR20tZrBv6TY33jWTqUS', 'admin', 'admin', 'admin', 1, '2022-06-02 14:35:01', '2022-07-12 14:43:47'),
+(11, 'test@test.fr', '$2b$10$iOJGPiD6Q5.Bu1tgqoL3SuVvgIwH6gllZ8AbNzeyvYHdNFHQggu.u', 'test', 'test', '01 02 03 04 05', 0, '2022-06-13 21:12:34', '2022-07-12 10:31:06');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

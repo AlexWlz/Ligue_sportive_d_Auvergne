@@ -1,7 +1,7 @@
 *::selection {
-  background-color: black;
+  background-color: grey;
 }
-*{
+* {
   color: white;
 }
 
@@ -38,16 +38,19 @@ body {
 }
 
 button {
-  background-color: rgba(75, 75, 75, 0.7);
+  background-color: rgba(255, 255, 255, 0.4);
   transition-duration: 100ms;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
-  margin: 5px;
+  margin: 10px;
+  color: black;
+  font-size: medium;
 }
 
 button:hover {
-  background-color: rgba(160, 160, 160, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
+  color: white;
 }
 
 .containerPost {
@@ -62,7 +65,7 @@ button:hover {
 }
 
 .post {
-  width: auto;
+  width: 350px;
   height: auto;
   border-radius: 10px;
   display: flex;
@@ -70,23 +73,37 @@ button:hover {
   margin: 20px;
   border: 1px solid rgba(0, 0, 0, 0.6);
   font-family: Arial, Helvetica, sans-serif;
+  word-wrap: break-word;
 }
 
 .post .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   background-color: rgba(0, 0, 0, 0.6);
-  display: grid;
-  place-content: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  word-wrap: break-word;
+}
+
+.text p {
+  margin: 5px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.text {
+  margin: 5px;
 }
 
 .post .body {
-  background-color: rgba(80, 80, 80, 0.7);
+  background-color: rgba(80, 80, 80, 0.6);
   padding: 20px;
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   word-break: break-all;
+  word-wrap: break-word;
 }
 
 .post .body p {
@@ -102,12 +119,20 @@ button:hover {
   padding: 10px;
 }
 
-.body button {
-  background-color: rgba(0, 0, 0, 0.6);
+img {
+  max-height: 150px;
+  border-radius: 5px;
 }
 
-.body button:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+.edit img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+.body img {
+  margin-bottom: 17px;
 }
 
 .post .footer {
@@ -120,6 +145,7 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.6);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  word-wrap: break-word;
 }
 
 .post .footer button {
@@ -142,7 +168,6 @@ button:hover {
   flex-flow: row wrap;
 }
 .formContainer {
-  width: 270px;
   align-items: center;
   margin: 20px;
   display: flex;
@@ -154,15 +179,16 @@ button:hover {
 }
 
 .formContainer input {
+  width: 100%;
+  text-align: center;
   color: black;
   outline: none;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 2px solid rgba(80, 80, 80, 0.8);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.8);
   border-radius: 5px;
-  padding-left: 10px;
-  font-size: 20px;
+  font-size: 19px;
 }
 
 .formContainer input::placeholder {
@@ -171,23 +197,30 @@ button:hover {
 }
 
 .formContainer button {
+  width: 100%;
   padding: 12px;
   border: none;
-  background-color: rgba(75, 75, 75, 0.6);
-  border-radius: 10px;
+  border-radius: 5px;
   transition-duration: 100ms;
 }
 
-.formContainer button:hover {
-  cursor: pointer;
-  background-color: rgba(160, 160, 160, 0.5);
-}
 
 .edit {
   padding: 10px;
   margin: 0;
   border-radius: 0;
-  background-color: rgba(80, 80, 80, 0.7);
+  background-color: rgba(80, 80, 80, 0.6);
+}
+
+.edit button {
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: grey;
+}
+
+.edit button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
 }
 
 /* NAVBAR */
@@ -204,7 +237,6 @@ button:hover {
   flex-flow: row wrap;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 .navbar a {
@@ -216,7 +248,7 @@ button:hover {
 }
 
 .navbar a:hover {
-  color: rgb(75, 75, 75);
+  color: grey;
 }
 
 .navbar button {
@@ -237,8 +269,12 @@ button:hover {
   margin: 10px;
   padding: 5px;
   border-radius: 10px;
-  width: auto;
+  max-width: 150px;
   border: 2px solid rgba(0, 0, 0, 0.6);
+}
+
+.cart img {
+  margin: 0;
 }
 
 .postCart {
@@ -253,3 +289,4 @@ button:hover {
   align-items: center;
   flex-flow: row wrap;
 }
+

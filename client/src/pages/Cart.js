@@ -64,11 +64,13 @@ function Cart() {
         </div>
         <div className="body">
           {listPost.map((value, key) => {
+            const url = `http://localhost:3001/${value.url}`
               return (
                 <div className="cart" key={key}>
                   <p>
                     {value.quantity} x {value.produce}
                   </p>
+                  {value.url && <img src={url} />}
                   <p>{value.description}</p>
                   <p>{value.price} €</p>
                 </div>

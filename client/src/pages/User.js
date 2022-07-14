@@ -75,7 +75,8 @@ function User() {
             });
         }
       });
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   const deleteUser = (id) => {
     axios
@@ -83,6 +84,7 @@ function User() {
         headers: { accessToken: sessionStorage.getItem("accessToken") },
       })
       .then(() => {
+        window.location.reload();
         navigate("/listusers");
       });
   };

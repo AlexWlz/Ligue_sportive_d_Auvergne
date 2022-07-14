@@ -8,11 +8,13 @@ function Post() {
   let { id } = useParams();
   let navigate = useNavigate();
 
+  const number = /^[0-9]+$/;
+
   const validationSchema = Yup.object().shape({
     produce: Yup.string(),
     description: Yup.string(),
-    price: Yup.number(),
-    stock: Yup.number(),
+    price: Yup.string().matches(number, "Is not a number"),
+    stock: Yup.string().matches(number, "Is not a number"),
   });
 
   const initialValues = {
@@ -69,7 +71,64 @@ function Post() {
             });
         }
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const [file, setFile] = useState("");
+  const [image, setImage] = useState();
+
+  const onChange = (e) => {
+    const f = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(f);
+    reader.onload = (e) => {
+      setImage(e.target.result);
+    };
+    setFile(f);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    let newUrl = file.name;
+
+    axios.post("http://localhost:3001/posts/img", formData);
+    if (newUrl) {
+      axios
+        .put(
+          "http://localhost:3001/posts/url",
+          {
+            newUrl: newUrl,
+            id: id,
+          },
+          {
+            headers: { accessToken: sessionStorage.getItem("accessToken") },
+          }
+        )
+        .then(() => {
+          navigate("/");
+        });
+    }
+  };
+
+  const deleteImage = (e) => {
+    let newUrl = null;
+    axios
+      .put(
+        "http://localhost:3001/posts/url",
+        {
+          newUrl: newUrl,
+          id: id,
+        },
+        {
+          headers: { accessToken: sessionStorage.getItem("accessToken") },
+        }
+      )
+      .then(() => {
+        navigate("/");
+      });
+  };
 
   const deletePost = (id) => {
     axios
@@ -156,6 +215,7 @@ function Post() {
       }
     }
   };
+  const url = `http://localhost:3001/${postObject.url}`
   if (user.admin === true) {
     return (
       <div className="containerPost">
@@ -188,7 +248,6 @@ function Post() {
               <label>Price: {postObject.price}</label>
               <ErrorMessage name="price" component="span" />
               <Field
-                type="number"
                 autoComplete="off"
                 id="inputCreatePost"
                 name="price"
@@ -197,17 +256,36 @@ function Post() {
               <label>Stock: {postObject.stock}</label>
               <ErrorMessage name="stock" component="span" />
               <Field
-                type="number"
                 autoComplete="off"
                 id="inputCreatePost"
                 name="stock"
                 placeholder="(Ex. 12...)"
               />
 
-              <button type="submit">Edit</button>
+              <button type="submit">Edit Post</button>
             </Form>
           </Formik>
 
+          <Formik>
+            <Form className="formContainer edit" onSubmit={onSubmit}>
+              <label>Image: {!postObject.url && "No image"}</label>
+              {postObject.url && <img src={url} />}
+              <Field
+                type="file"
+                className="custom-file-input"
+                id="customFile"
+                onChange={onChange}
+                accept="image/*"
+              />
+              {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+              {image && (
+                <div className="containerPost">
+                  <img src={image} />
+                  <button style={{margin: "0"}} type="submit">{postObject.url && ("Edit Image")}{!postObject.url && ("Upload Image")}</button>
+                </div>
+              )}
+            </Form>
+          </Formik>
           <div className="footer">
             <button
               onClick={() => {
@@ -216,6 +294,9 @@ function Post() {
             >
               Delete Post
             </button>
+            {postObject.url && (
+              <button onClick={deleteImage}>Delete image</button>
+            )}
           </div>
         </div>
       </div>

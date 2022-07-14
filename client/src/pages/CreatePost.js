@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 function CreatePost() {
   let navigate = useNavigate();
 
+  const [image, setImage] = useState();
+
   const initialValues = {
     produce: "",
     description: "",
@@ -14,11 +16,17 @@ function CreatePost() {
     stock: "",
   };
 
+  const number = /^[0-9]+$/;
+
   const validationSchema = Yup.object().shape({
-    produce: Yup.string().required("You must input a produce!"),
-    description: Yup.string().required(),
-    price: Yup.number().required(),
-    stock: Yup.number().required(),
+    produce: Yup.string().required("Missing title"),
+    description: Yup.string().required("Missing description"),
+    price: Yup.string()
+      .matches(number, "Is not a number")
+      .required("Missing price"),
+    stock: Yup.string()
+      .matches(number, "Is not a number")
+      .required("Missing stock"),
   });
 
   const onSubmit = (data) => {
@@ -69,6 +77,7 @@ function CreatePost() {
             });
         }
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (user.admin === true) {
@@ -99,7 +108,6 @@ function CreatePost() {
             <label>Price: </label>
             <ErrorMessage name="price" component="span" />
             <Field
-              type="number"
               autoComplete="off"
               id="inputCreatePost"
               name="price"
@@ -108,7 +116,6 @@ function CreatePost() {
             <label>Stock: </label>
             <ErrorMessage name="stock" component="span" />
             <Field
-              type="number"
               autoComplete="off"
               id="inputCreatePost"
               name="stock"

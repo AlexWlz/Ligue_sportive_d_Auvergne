@@ -13,6 +13,7 @@ import User from "./pages/User";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
+import Image from "./pages/Image";
 
 function App() {
 
@@ -63,6 +64,7 @@ function App() {
             });
         }
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const logout = () => {
@@ -104,6 +106,7 @@ function App() {
           </div>
           <Routes>
             <Route path="/" exact element={<Home />} />
+            <Route path="/image" exact element={<Image />} />
             <Route path="/createpost" exact element={<CreatePost />} />
             <Route path="/post/:id" exact element={<Post />} />
             <Route path="/user/:id" exact element={<User />} />
