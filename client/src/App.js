@@ -14,6 +14,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Image from "./pages/Image";
+import Commands from "./pages/Commands";
 
 function App() {
 
@@ -83,6 +84,7 @@ function App() {
                 <Link to="/createpost"> Create A Post</Link>
                 <Link to="/listusers">Users</Link>
                 <Link to="/registration">Create Users</Link>
+                <Link to="/commands">Commands</Link>
               </>
             )}
 
@@ -113,6 +115,7 @@ function App() {
             <Route path="/registration" exact element={<Registration />} />
             <Route path="/listusers" exact element={<ListUsers />} />
             <Route path="/cart" exact element={<Cart />} />
+            <Route path="/commands" exact element={<Commands />} />
             <Route path="/profile/:id" exact element={<Profile />} />
             {!authState.status && (
               <Route path="/login" exact element={<Login />} />

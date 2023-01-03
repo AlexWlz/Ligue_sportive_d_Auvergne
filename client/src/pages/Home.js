@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -101,6 +100,8 @@ function Home() {
 
   // eslint-disable-next-line no-unused-vars
   let quantity = 0;
+  
+  localStorage.setItem("id", authState.id)
 
   return (
     <div className="containerPost">
